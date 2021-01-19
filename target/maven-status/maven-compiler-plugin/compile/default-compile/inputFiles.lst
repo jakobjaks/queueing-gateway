@@ -1,0 +1,4 @@
+/Users/jroots/thesis/queue-gateway/src/main/java/org/jroots/queueing/QueueGatewayApplication.java
+/Users/jroots/thesis/queue-gateway/src/main/java/org/jroots/queueing/QueueGatewayConfiguration.java
+/Users/jroots/thesis/queue-gateway/src/main/java/org/jroots/queueing/health/TemplateHealthCheck.java
+/Users/jroots/thesis/queue-gateway/src/main/java/org/jroots/queueing/resources/MessageReceiverResource.java

@@ -1,8 +1,0 @@
-org/jroots/queueing/health/TemplateHealthCheck.class
-org/jroots/queueing/db/RabbitProducer.class
-org/jroots/queueing/resources/MessageReceiverResource.class
-org/jroots/queueing/db/SqsProducer.class
-org/jroots/queueing/QueueGatewayApplication.class
-org/jroots/queueing/QueueGatewayConfiguration.class
-org/jroots/queueing/db/QueueProducer.class
-org/jroots/queueing/api/Message.class

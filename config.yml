@@ -1,3 +1,11 @@
+server:
+  applicationConnectors:
+    - type: http
+      port: 8080
+  adminConnectors:
+    - type: http
+      port: 8081
+
 logging:
   level: INFO
   loggers:
@@ -5,3 +13,5 @@ logging:
 
 template: Hello, %s!
 defaultName: Stranger
+
+sqsUrl: https://sqs.us-east-1.amazonaws.com/328945660164/rate_limiter_entry_queue

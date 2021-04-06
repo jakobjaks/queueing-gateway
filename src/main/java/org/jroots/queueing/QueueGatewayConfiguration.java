@@ -1,10 +1,8 @@
 package org.jroots.queueing;
 
-import io.dropwizard.Configuration;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.hibernate.validator.constraints.*;
+import io.dropwizard.Configuration;
 
-import javax.validation.constraints.*;
 import javax.validation.constraints.NotEmpty;
 
 public class QueueGatewayConfiguration extends Configuration {
@@ -13,6 +11,9 @@ public class QueueGatewayConfiguration extends Configuration {
 
     @NotEmpty
     private String defaultName = "Stranger";
+
+    @NotEmpty
+    private String sqsUrl;
 
     @JsonProperty
     public String getTemplate() {
@@ -32,5 +33,15 @@ public class QueueGatewayConfiguration extends Configuration {
     @JsonProperty
     public void setDefaultName(String name) {
         this.defaultName = name;
+    }
+
+    @JsonProperty
+    public String getSqsUrl() {
+        return sqsUrl;
+    }
+
+    @JsonProperty
+    public void setSqsUrl(String sqsUrl) {
+        this.sqsUrl = sqsUrl;
     }
 }

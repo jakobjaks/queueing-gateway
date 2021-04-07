@@ -80,5 +80,5 @@ jobs:
       with:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
         service: queue-gateway-service
-        cluster: QueueGatewayCluster
+        cluster: QueueCluster
         wait-for-service-stability: true

@@ -3,15 +3,16 @@ package org.jroots.queueing;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
+import io.prometheus.client.exporter.HTTPServer;
 import org.jroots.queueing.client.QueueProducer;
-import org.jroots.queueing.client.RabbitProducer;
 import org.jroots.queueing.client.SqsProducer;
 import org.jroots.queueing.health.TemplateHealthCheck;
 import org.jroots.queueing.resources.MessageReceiverResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import java.io.IOException;
 
 public class QueueGatewayApplication extends Application<QueueGatewayConfiguration> {
 
@@ -29,7 +30,7 @@ public class QueueGatewayApplication extends Application<QueueGatewayConfigurati
 
     @Override
     public void initialize(final Bootstrap<QueueGatewayConfiguration> bootstrap) {
-        // TODO: application initialization
+
     }
 
     @Override
@@ -41,5 +42,11 @@ public class QueueGatewayApplication extends Application<QueueGatewayConfigurati
         final TemplateHealthCheck healthCheck =
                 new TemplateHealthCheck(configuration.getTemplate());
         environment.healthChecks().register("template", healthCheck);
+
+        try {
+            new HTTPServer(9092);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

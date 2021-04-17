@@ -1,4 +1,7 @@
 server:
+  maxThreads: 512
+  maxQueuedRequests: 512
+  minThreads: 512
   applicationConnectors:
     - type: http
       port: 8080

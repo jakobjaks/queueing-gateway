@@ -15,6 +15,8 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import java.util.concurrent.CompletableFuture;
 
 @Path("/push-to-queue")
 @Produces(MediaType.APPLICATION_JSON)
@@ -29,8 +31,8 @@ public class MessageReceiverResource {
     public MessageReceiverResource(QueueProducer queueProducer) {
         this.queueProducer = queueProducer;
         executor = new ThreadPoolTaskExecutor();
-        executor.setCorePoolSize(20);
-        executor.setMaxPoolSize(50);
+        executor.setCorePoolSize(100);
+        executor.setMaxPoolSize(200);
         executor.setThreadNamePrefix("sqsExecutor");
         executor.initialize();
         CollectorRegistry.defaultRegistry.register(new DropwizardExports(metrics));
@@ -39,9 +41,7 @@ public class MessageReceiverResource {
     @POST
     @Timed
     public void pushMessageToQueue(Message message) {
-        executor.execute(() -> {
-            counter.inc();
-            queueProducer.sendMessage(message);
-        });
+        CompletableFuture.supplyAsync(() -> queueProducer.sendMessage(message), executor)
+                .thenAccept((item) -> counter.inc());
     }
 }

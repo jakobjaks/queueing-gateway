@@ -8,4 +8,4 @@ COPY config.yml /var/queueing-gateway/
 COPY --from=build /usr/src/app/target/queue-gateway-1.0.jar /var/queueing-gateway/
 EXPOSE 8080
 WORKDIR /var/queueing-gateway
-CMD ["java", "-jar", "-Done-jar.silent=true", "queue-gateway-1.0.jar", "server", "config.yml"]
+CMD ["java", "-jar", "-Done-jar.silent=true -D-Dcom.sun.management.jmxremote.port=9090", "queue-gateway-1.0.jar", "server", "config.yml"]

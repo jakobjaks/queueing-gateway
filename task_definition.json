@@ -6,20 +6,26 @@
       "dnsSearchDomains": null,
       "environmentFiles": null,
       "logConfiguration": {
-        "logDriver": "awslogs",
+        "logDriver": "json-file",
         "secretOptions": null,
-        "options": {
-          "awslogs-group": "/ecs/queue-gateway-task",
-          "awslogs-region": "us-east-1",
-          "awslogs-stream-prefix": "ecs"
-        }
+        "options": null
       },
       "entryPoint": null,
       "portMappings": [
         {
-          "hostPort": 5701,
+          "hostPort": 8080,
           "protocol": "tcp",
-          "containerPort": 5701
+          "containerPort": 8080
+        },
+        {
+          "hostPort": 8081,
+          "protocol": "tcp",
+          "containerPort": 8081
+        },
+        {
+          "hostPort": 9092,
+          "protocol": "tcp",
+          "containerPort": 9092
         }
       ],
       "command": null,
@@ -33,11 +39,11 @@
       "workingDirectory": null,
       "secrets": null,
       "dockerSecurityOptions": null,
-      "memory": 300,
+      "memory": 2000,
       "memoryReservation": null,
       "volumesFrom": [],
       "stopTimeout": null,
-      "image": "328945660164.dkr.ecr.us-east-1.amazonaws.com/rate-limiter-repo:c50a7f1bcb822761c68cc5c15aa4d088e1d4329c",
+      "image": "328945660164.dkr.ecr.us-east-1.amazonaws.com/rate-limiter-repo:6f04fdb108010d52cfb5e297aaa37decd6136e63",
       "startTimeout": null,
       "firelensConfiguration": null,
       "dependsOn": null,
@@ -50,7 +56,7 @@
       "extraHosts": null,
       "pseudoTerminal": null,
       "user": null,
-      "readonlyRootFilesystem": null,
+      "readonlyRootFilesystem": false,
       "dockerLabels": null,
       "systemControls": null,
       "privileged": null,
@@ -58,38 +64,19 @@
     }
   ],
   "placementConstraints": [],
-  "memory": "512",
+  "memory": "2000",
   "taskRoleArn": null,
   "compatibilities": [
-    "EC2",
-    "FARGATE"
+    "EC2"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:us-east-1:328945660164:task-definition/queue-gateway-task:3",
+  "taskDefinitionArn": "arn:aws:ecs:us-east-1:328945660164:task-definition/queue-gateway-task:17",
   "family": "queue-gateway-task",
   "requiresAttributes": [
     {
       "targetId": null,
       "targetType": null,
       "value": null,
-      "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
-    },
-    {
-      "targetId": null,
-      "targetType": null,
-      "value": null,
-      "name": "ecs.capability.execution-role-awslogs"
-    },
-    {
-      "targetId": null,
-      "targetType": null,
-      "value": null,
       "name": "com.amazonaws.ecs.capability.ecr-auth"
-    },
-    {
-      "targetId": null,
-      "targetType": null,
-      "value": null,
-      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
     },
     {
       "targetId": null,
@@ -101,22 +88,22 @@
       "targetId": null,
       "targetType": null,
       "value": null,
-      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+      "name": "com.amazonaws.ecs.capability.logging-driver.json-file"
     },
     {
       "targetId": null,
       "targetType": null,
       "value": null,
-      "name": "ecs.capability.task-eni"
+      "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
     }
   ],
   "pidMode": null,
   "requiresCompatibilities": [
     "EC2"
   ],
-  "networkMode": "awsvpc",
-  "cpu": "256",
-  "revision": 3,
+  "networkMode": null,
+  "cpu": "2000",
+  "revision": 17,
   "status": "ACTIVE",
   "inferenceAccelerators": null,
   "proxyConfiguration": null,

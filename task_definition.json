@@ -39,11 +39,11 @@
       "workingDirectory": null,
       "secrets": null,
       "dockerSecurityOptions": null,
-      "memory": 2000,
+      "memory": 1000,
       "memoryReservation": null,
       "volumesFrom": [],
       "stopTimeout": null,
-      "image": "328945660164.dkr.ecr.us-east-1.amazonaws.com/rate-limiter-repo:6f04fdb108010d52cfb5e297aaa37decd6136e63",
+      "image": "328945660164.dkr.ecr.us-east-1.amazonaws.com/rate-limiter-repo:b011dc2d8fca4f9e4c0b7c80e49bab6053d3436b",
       "startTimeout": null,
       "firelensConfiguration": null,
       "dependsOn": null,
@@ -64,12 +64,12 @@
     }
   ],
   "placementConstraints": [],
-  "memory": "2000",
+  "memory": "1000",
   "taskRoleArn": null,
   "compatibilities": [
     "EC2"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:us-east-1:328945660164:task-definition/queue-gateway-task:17",
+  "taskDefinitionArn": "arn:aws:ecs:us-east-1:328945660164:task-definition/queue-gateway-task:22",
   "family": "queue-gateway-task",
   "requiresAttributes": [
     {
@@ -102,8 +102,8 @@
     "EC2"
   ],
   "networkMode": null,
-  "cpu": "2000",
-  "revision": 17,
+  "cpu": "1000",
+  "revision": 22,
   "status": "ACTIVE",
   "inferenceAccelerators": null,
   "proxyConfiguration": null,

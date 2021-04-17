@@ -16,6 +16,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriBuilder;
 import java.util.concurrent.CompletableFuture;
 
 @Path("/push-to-queue")
@@ -40,8 +41,11 @@ public class MessageReceiverResource {
 
     @POST
     @Timed
-    public void pushMessageToQueue(Message message) {
-        CompletableFuture.supplyAsync(() -> queueProducer.sendMessage(message), executor)
-                .thenAccept((item) -> counter.inc());
+    public Response pushMessageToQueue(Message message) {
+        return CompletableFuture.supplyAsync(() -> queueProducer.sendMessage(message), executor)
+                .thenApply((item) -> {
+                    counter.inc();
+                    return Response.created(UriBuilder.fromResource(MessageReceiverResource.class).build()).build();
+                }).join();
     }
 }

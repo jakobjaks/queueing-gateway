@@ -24,7 +24,7 @@ public class MessageReceiverResource {
     private final Logger logger = LoggerFactory.getLogger(MessageReceiverResource.class);
     private final ThreadPoolTaskExecutor executor;
     private final MetricRegistry metrics = new MetricRegistry();
-    private final Counter counter = Counter.build().namespace("queue-cluster").name("gateway-messages").help("my counter").register();
+    private final Counter counter = Counter.build().namespace("queue_cluster").name("gateway_messages").help("my counter").register();
 
     public MessageReceiverResource(QueueProducer queueProducer) {
         this.queueProducer = queueProducer;

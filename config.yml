@@ -1,0 +1,20 @@
+server:
+  maxThreads: 1024
+  maxQueuedRequests: 1024
+  minThreads: 1024
+  applicationConnectors:
+    - type: http
+      port: 8080
+  adminConnectors:
+    - type: http
+      port: 8081
+
+logging:
+  level: INFO
+  loggers:
+    org.jroots.queueing: DEBUG
+
+template: Hello, %s!
+defaultName: Stranger
+
+sqsUrl: https://sqs.us-east-1.amazonaws.com/328945660164/rate_limiter_entry_queue
